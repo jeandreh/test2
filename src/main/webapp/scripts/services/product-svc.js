@@ -8,11 +8,11 @@
  * Fetches a list with the products from the backend server and caches it in the Local Storage.
  */
 angular.module('cloudPosApp')
-  .factory('productSvc', [ '$http', '$q', '$location', function ($http, $q, $location) {
+  .factory('productSvc', [ '$http', '$q', '$window', function ($http, $q, $window) {
 
 	return {
 
-		server_end_point: 'http://localhost:8080/cloudpos/rest/products',
+		server_end_point: $window.location.origin + $window.location.pathname + 'rest/products',
 
 		fetchAll: function() {
 			var url = this.server_end_point;

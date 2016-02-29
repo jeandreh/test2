@@ -8,11 +8,11 @@
  * Fetches a list with the categories from the backend server and caches it in the Local Storage.
  */
 angular.module('cloudPosApp')
-  .factory('categorySvc', [ '$http', '$q', '$location', function ($http, $q, $location) {
+  .factory('categorySvc', [ '$http', '$q', '$window', function ($http, $q, $window) {
 
 	return {
 
-		server_end_point: 'http://localhost:8080/cloudpos/rest/categories',
+		server_end_point: $window.location.origin + $window.location.pathname + 'rest/categories',
 
 		fetchAll: function() {
 			var url = this.server_end_point;
