@@ -1,0 +1,108 @@
+<div class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="modal-title">New Retail Option for {{product.name}}</h4>
+      </div>
+
+      <form novalidate role="form" id="add-stock" name="optionForm">
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="option-name">Name*</label>
+            <input type="text"
+              id="option-name"
+              name="opName"
+              class="form-control"
+              placeholder="Name of the retail option (Eg: Large, Standard)"
+              ng-model="option.name"
+              ng-minlength="3"
+              ng-maxlength="100"
+              required
+              unique="product.retailOptions">
+            <div ng-messages="optionForm.opName.$error" ng-show="optionForm.opName.$dirty">
+              <p class="cxt-error-msg" ng-message="minlength">Name must be at least 3 characters long</p>
+              <p class="cxt-error-msg" ng-message="maxlength">Name must contain less than 100 characters</p>
+              <p class="cxt-error-msg" ng-message="required">Name is a required field</p>
+              <p class="cxt-error-msg" ng-message="unique">Retail option already exist with this name</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="option-short-name">Short Name*</label>
+            <input type="text"
+              id="option-short-name"
+              name="opSName"
+              class="form-control"
+              placeholder="A short name with at most 2 characters (Eg: L, SD)"
+              ng-model="option.shortName"
+              ng-minlength="1"
+              ng-maxlength="2"
+              required>
+            <div ng-messages="optionForm.opSName.$error" ng-show="optionForm.opSName.$dirty">
+              <p class="cxt-error-msg" ng-message="maxlength">Short name must contain 2 characters tops</p>
+              <p class="cxt-error-msg" ng-message="required">Short name is a required field</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="option-description">Description</label>
+            <input type="text"
+              id="option-description"
+              name="opDesc"
+              class="form-control"
+              placeholder="Short description of the option"
+              ng-model="option.description"
+              ng-minlength="5"
+              ng-maxlength="100">
+            <div ng-messages="optionForm.opDesc.$error" ng-show="optionForm.opDesc.$dirty">
+              <p class="cxt-error-msg" ng-message="minlength">Name must be at least 5 characters long</p>
+              <p class="cxt-error-msg" ng-message="maxlength">Name must contain less than 100 characters</p>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="option-name">Retail Price*</label>
+            <input type="number"
+              name="price"
+              class="form-control"
+              id="option-name"
+              placeholder="Retail price for this option"
+              ng-model="option.price"
+              ng-min="0.0"
+              ng-max="999.99"
+              required>
+              <div ng-messages="optionForm.price.$error" ng-show="optionForm.price.$dirty">
+                <p class="cxt-error-msg" ng-message="min">Price must be positive</p>
+                <p class="cxt-error-msg" ng-message="max">Price must must be under 1000</p>
+                <p class="cxt-error-msg" ng-message="required">Price is a required field</p>
+              </div>
+          </div>
+          <div class="form-group">
+            <fieldset>
+              <legend>Composition</legend>
+          	  <div ng-repeat="ingredient in selectedIngredients" ng-show="selectedIngredients.length">
+				<label for="option-name">{{ingredient.name}}</label>
+				<input type="number"
+				  class="form-control"
+				  id="option-quantity"
+				  placeholder="enter the quantity in {{ingredient.unity}}"
+				  ng-model="option.compositions[$index].quantity"
+				  required>
+              </div>
+              <div ng-hide="selectedIngredients.length">
+                No ingredients defined for this product.
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit"
+            class="btn btn-success"
+            ng-click="addOption(option);"
+            ng-disabled="!optionForm.$valid">Add</button>
+          <button type="button"
+            class="btn btn-danger"
+            ng-click="$hide()">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
