@@ -1,1 +1,1 @@
-export MAVEN_ARGS="clean package -Popenshift,postgresql-openshift -DskipTests"
+export MAVEN_ARGS="clean package -Popenshift,postgres-openshift -DskipTests"
