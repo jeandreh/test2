@@ -12,6 +12,7 @@ angular.module('cloudPosApp')
 
 	return {
 
+		// TODO come up with a better way to handle different server endpoints (service)
 		server_end_point: $window.location.origin + $window.location.pathname + 'rest/products',
 
 		fetchAll: function() {

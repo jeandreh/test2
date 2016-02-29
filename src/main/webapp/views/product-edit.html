@@ -2,7 +2,7 @@
 	<form name="productForm" novalidate role="form" id="productForm" name="productForm">
 		<div class="row" id="product-description">
 			<div class="col-md-2">
-				<div flow-init="{singleFile:true, target:'/cloudpos/upload', testChunks:false}"
+				<div flow-init="{singleFile:true, target:'upload', testChunks:false}"
 					flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
 					flow-files-submitted="$flow.upload()"
 					flow-file-success="handleUploadSuccess($file, $message)"
