@@ -246,6 +246,7 @@
                   </includes>
                   <excludes>
                       <exclude>META-INF/*</exclude>
+                      <exclude>import.sql</exclude>
                   </excludes>
               </resource>
           </resources>
