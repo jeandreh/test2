@@ -3,6 +3,8 @@ package org.jboss.tools.examples.model;
 import javax.persistence.Entity;
 import java.io.Serializable;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
@@ -17,10 +19,13 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, unique = true)
+	@Column(unique = true)
+	@NotNull(message="must not be null")
+	@Size(min = 3, max = 25)
 	private String name;
 
 	@Column
+	@Size(min = 5, max = 100)
 	private String description;
 
 	public Long getId() {

@@ -28,7 +28,7 @@ public class CategoryDTO extends ChangeTrackingDTO implements Serializable {
 		}
 		
 		if (isChanged(this.id)) entity.setId(id);
-		if (isChanged(this.name)) entity.setName(name);
+		if (isChanged(this.name) && this.name != null) entity.setName(name);
 		if (isChanged(this.description)) entity.setDescription(description);
 		
 		entity = em.merge(entity);

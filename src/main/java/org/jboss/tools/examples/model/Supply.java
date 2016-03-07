@@ -3,6 +3,9 @@ package org.jboss.tools.examples.model;
 import javax.persistence.Entity;
 import java.io.Serializable;
 import javax.persistence.Id;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Size;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
@@ -21,8 +24,12 @@ public class Supply implements Serializable {
 	private String name;
 
 	@Column(nullable = false)
+	@Size(min = 1, max = 3)
 	private String unity;
 
+	@Column(nullable = false)
+	@DecimalMin(value = "0.0")
+	@DecimalMax(value = "9999.99")
 	private Float price;
 
 	@Column

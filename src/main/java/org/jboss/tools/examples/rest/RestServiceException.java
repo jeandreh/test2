@@ -1,5 +1,7 @@
 package org.jboss.tools.examples.rest;
 
+import java.io.Serializable;
+
 import javax.ejb.ApplicationException;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.Response;
@@ -16,9 +18,15 @@ import javax.ws.rs.core.Response;
  * @author Marius Bogoevici
  */
 @ApplicationException(inherited = true, rollback = true)
-public class RestServiceException extends WebApplicationException {
+public class RestServiceException extends WebApplicationException implements Serializable {
 
-    public RestServiceException() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public RestServiceException() {
+		super();
     }
 
     public RestServiceException(Response response) {

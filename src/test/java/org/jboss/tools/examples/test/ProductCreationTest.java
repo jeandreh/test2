@@ -61,7 +61,7 @@ public class ProductCreationTest {
 		assertTrue(r.getStatus() == Response.Status.OK.getStatusCode());
 		assertTrue(r.getEntity().equals(2L));
 		
-		Product prod = productService.getSingleInstance(2L);
+		Product prod = productService.getSingleInstance((Long) r.getEntity());
 		
 		/**  
 		 *  Important to note that pDto1 and pDto2 fail an equality test as pDto1 doesn't have 

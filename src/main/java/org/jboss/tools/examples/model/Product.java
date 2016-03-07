@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
+import javax.validation.constraints.Size;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.CascadeType;
@@ -28,6 +28,7 @@ public class Product implements Serializable {
 	private Long id;
 
 	@Column(nullable = false, unique = true)
+	@Size(min = 3, max = 25)
 	private String name;
 
 	@Column
@@ -47,9 +48,14 @@ public class Product implements Serializable {
 	@JoinColumn(name = "product_id", referencedColumnName = "id")
 	private Set<RetailOption> retailOptions;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,
-			CascadeType.MERGE})
-	@JoinTable(joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")}, inverseJoinColumns = {@JoinColumn(name = "category_id", referencedColumnName = "id")})
+	@ManyToMany(
+		fetch = FetchType.EAGER, 
+		cascade = {CascadeType.PERSIST,CascadeType.MERGE}
+	)
+	@JoinTable(
+		joinColumns = {@JoinColumn(name = "product_id", referencedColumnName = "id")}, 
+		inverseJoinColumns = {@JoinColumn(name = "category_id", referencedColumnName = "id")}
+	)
 	private Set<Category> categories;
 
 	public Set<Category> getCategories() {

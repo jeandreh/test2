@@ -12,8 +12,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.validation.constraints.DecimalMax;
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Size;
 
 @SuppressWarnings("serial")
 @Entity
@@ -25,15 +27,20 @@ public class RetailOption implements Serializable {
 	private Long id;
 
 	@Column(nullable = false)
+	@Size(min = 3, max = 25)
 	private String name;
 
 	@Column(nullable = false)
+	@Size(min = 1, max = 2)
 	private String shortName;
 
 	@Column
+	@Size(min = 5, max = 100)
 	private String description;
 
 	@Column(nullable = false)
+	@DecimalMin(value = "0.0")
+	@DecimalMax(value = "9999.99")
 	private Double price;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -99,11 +106,14 @@ public class RetailOption implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((compositions == null) ? 0 : compositions.hashCode());
-		result = prime * result + ((description == null) ? 0 : description.hashCode());
+		result = prime * result
+				+ ((compositions == null) ? 0 : compositions.hashCode());
+		result = prime * result
+				+ ((description == null) ? 0 : description.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
-		result = prime * result + ((shortName == null) ? 0 : shortName.hashCode());
+		result = prime * result
+				+ ((shortName == null) ? 0 : shortName.hashCode());
 		return result;
 	}
 
@@ -149,5 +159,4 @@ public class RetailOption implements Serializable {
 		return true;
 	}
 
-	
 }
