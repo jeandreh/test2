@@ -9,8 +9,10 @@
  */
 angular.module('cloudPosApp')
   .controller('ProductEditCtrl', [
-    '$scope', '$modal', '$routeParams', '$window', '$location', 'productSvc', 'categorySvc', 'supplySvc',
-    function ($scope, $modal, $routeParams, $window, $location, productSvc, categorySvc, supplySvc) {
+    '$scope', '$modal', '$routeParams', '$window', 
+    '$location', 'productSvc', 'categorySvc', 'supplySvc', 'Flash',
+    function ($scope, $modal, $routeParams, $window, $location,
+    		productSvc, categorySvc, supplySvc, flash) {
 
     $scope.categories = [];
 
@@ -56,29 +58,33 @@ angular.module('cloudPosApp')
         show: false
     });
 
-    var DEFAULT_IMG_URL = "http://www.placehold.it/150x150/EFEFEF/AAAAAA&amp;text=add+image";
+    var DEFAULT_IMG_URL = "/images/noimage.png";
     
     // load categories and supplies from backend-server. TODO implement local cache
     var promise = categorySvc.fetchAll();
     promise.then(
-    		function(response) {
-                $scope.categories = response.data;
-            },
-            function(response) {
-            	//TODO handle error
-                console.log(response.data);
-            }
+		function(response) {
+            $scope.categories = response.data;
+        },
+        function(response) {
+        	 flash.create('danger', 
+         			'<b>Error loading category list from server</b><br/>' + 
+         			'Details: ' + response.data, 0, null, false);
+        	 console.error(response.data);
+        }
     );
     
     var promise = supplySvc.fetchAll();
     promise.then(
-    		function(response) {
-                $scope.ingredients = response.data;
-            },
-            function(response) {
-            	//TODO handle error
-                console.log(response.data);
-            }
+		function(response) {
+            $scope.ingredients = response.data;
+        },
+        function(response) {
+        	 flash.create('danger', 
+         			'<b>Error loading ingredient list from server</b><br/>' + 
+         			'Details: ' + response.data, 0, null, false);
+        	 console.error(response.data);
+        }
     );
     
     if ($location.path().indexOf('/new') != -1) {
@@ -93,6 +99,7 @@ angular.module('cloudPosApp')
 
     function handleProductCreation() {
         $scope.product = {
+        	"id": null,
             "name": null,
             "imageUrl": DEFAULT_IMG_URL,
             "retailOptions": [],
@@ -116,9 +123,9 @@ angular.module('cloudPosApp')
     }
 
     function handleError() {
-        console.log("Invalid Request");
-        console.log($location);
-        console.log($routeParams);
+    	 flash.create('danger', 
+     		'<b>Invalid request.</b><br/>', 0, null, false);
+    	 console.error("Invalid request");
     }
 
     function tickCategories() {
@@ -180,7 +187,9 @@ angular.module('cloudPosApp')
             ingredientModal.hide();
         }
         else {
-            // TODO handle error message
+        	 flash.create('danger', 
+     			'<b>Error saving ingredient.</b><br/>', 0, null, false);
+        	 console.error("Error saving ingredient");
         }
     };
 
@@ -199,7 +208,9 @@ angular.module('cloudPosApp')
             };
         }
         else {
-            // TODO handle error message
+        	flash.create('danger', 
+         		'<b>Error saving retail option</b><br/>', 0, null, false);
+        	console.error("Error saving retail option");
         }
     };
 
@@ -229,35 +240,34 @@ angular.module('cloudPosApp')
 				}
     		);
     	}
-    	
+    	console.log($scope.product);
         var promise = productSvc.create($scope.product);
         promise.then(
             function(response) {
-                $scope.product.id = response.data;
+                console.log("Product saved with ID = " + response.data);
+                $window.location.href = "#/products";
             },
             function(response) {
-            	// TODO handle error.
-                console.log(response.data);
+            	flash.create('danger', 
+         			'<b>Error saving product.</b><br/>' +
+         			'Details: ' + response.data, 0, null, false);
+            	console.error(response.data);
             }
         );
-        console.log($scope.product);
-        $window.location.href = "#/products";
     };
     
     $scope.handleUploadError = function (file, msg) {
-    	// TODO show error message
-    	console.log(file);
-    	console.log(msg);
+    	flash.create('danger', 
+ 			'<b>Error uploading product image.</b><br/>' +
+ 			'Details: ' + msg, 0, null, false);
+    	console.error(msg);
     };
     
     $scope.handleUploadSuccess = function (file, msg) {
-    	// TODO show error message
     	$scope.product.imageUrl = msg;
-    	console.log($scope.product);
     };
     
     $scope.clearImage = function () {
-    	// TODO show error message
     	$scope.product.imageUrl = DEFAULT_IMG_URL;
     };
     

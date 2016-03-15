@@ -1,0 +1,37 @@
+{
+  "name": "angular-flash-alert",
+  "version": "2.2.4",
+  "homepage": "https://github.com/sachinchoolur/angular-flash",
+  "authors": [
+    "Sachin N <sachi77n@gmail.com>"
+  ],
+  "description": "Flash messages for AngularJS and Bootstrap",
+  "main": [
+    "dist/angular-flash.js",
+    "dist/angular-flash.css"
+  ],
+  "keywords": [
+    "angular-flash",
+    "flash",
+    "message",
+    "alert",
+    "angularjs",
+    "bootstrap"
+  ],
+  "dependencies": {
+    "angular": ">=1.4.8"
+  },
+  "ignore": [
+    "README.md",
+    "demo"
+  ],
+  "_release": "2.2.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v2.2.4",
+    "commit": "6029d3fbf17a48e5d0e9389e38ad3abd7454e2be"
+  },
+  "_source": "git://github.com/sachinchoolur/angular-flash.git",
+  "_target": "~2.2",
+  "_originalSource": "angular-flash-alert"
+}

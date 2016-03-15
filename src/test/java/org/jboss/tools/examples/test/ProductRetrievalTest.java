@@ -5,9 +5,7 @@ import java.util.List;
 
 import javax.ejb.EJBException;
 import javax.inject.Inject;
-import javax.persistence.NoResultException;
 import javax.ws.rs.core.MultivaluedHashMap;
-import javax.ws.rs.core.UriInfo;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;

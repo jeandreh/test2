@@ -9,13 +9,13 @@
  */
 angular.module('cloudPosApp')
   .controller('ProductsCtrl', [
-    '$scope', '$modal', '$routeParams', '$location', 'productSvc', 'categorySvc',
-    function ($scope, $modal, $routeParams, $location, productSvc, categorySvc) {
+    '$scope', '$modal', '$routeParams', '$location', 'productSvc', 'categorySvc', 'Flash',
+    function ($scope, $modal, $routeParams, $location, productSvc, categorySvc, flash) {
      	
     $scope.products = [];
     $scope.categories = [];
-    //$scope.searchText = "";
-    //$scope.categoryFilter = "";
+//    $scope.searchText = null;
+    $scope.categoryFilter = null;
     
     var promise = productSvc.fetchAll();
     promise.then(
@@ -23,8 +23,10 @@ angular.module('cloudPosApp')
             $scope.products = response.data;
         },
         function(response) {
-        	//TODO handle error messsages
-            console.log(response.data);
+            flash.create('danger', 
+    			'<b>Error loading product list from server</b><br/>' + 
+    			'Details: ' + response.data, 0, null, false);
+            console.error(response.data);
         }
     );
     
@@ -34,16 +36,32 @@ angular.module('cloudPosApp')
             $scope.categories = response.data;
         },
         function(response) {
-        	//TODO handle error messsages
-            console.log(response.data);
+        	 flash.create('danger', 
+     			'<b>Error loading categories list from server</b><br/>' + 
+     			'Details: ' + response.data, 0, null, false);
+        	 console.error(response.data);
         }
     );
     
-    $scope.setFilter = function (category) {
-    	$scope.categoryFilter = category.name;
+    $scope.setCategoryFilter = function (name) {
+    	$scope.categoryFilter = name;
     };
     
-  }]);
+    $scope.filterByCategory = function (product) {
+    	var match = false;
+    	if ($scope.categoryFilter == null) {
+    		match = true;
+    	}
+    	else {
+    		if (product.categories.length && 
+    			_.findWhere(product.categories, {'name': $scope.categoryFilter})) {
+    			match = true;
+    		}
+    	}
+    	return match;
+    };
+    
+}]);
 
 /**
 * $scope.product =

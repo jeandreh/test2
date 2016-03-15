@@ -36,7 +36,7 @@ insert into Supply (name, price, unity, stock) values ('Suggar', '3', 'kg', '100
 insert into Supply (name, price, unity, stock) values ('Chocolate Powder', '25.20', 'kg', '100')
 
 -- Product 1
-insert into Product (name, imageUrl) values ('Black Coffee', '/cloudpos/img/black_coffee.jpg');
+insert into Product (name, imageUrl) values ('Black Coffee', '/images/black_coffee.jpg');
 
 -- Ingredient 1
 insert into Product_Supply (product_id, supply_id) values (1, 1);

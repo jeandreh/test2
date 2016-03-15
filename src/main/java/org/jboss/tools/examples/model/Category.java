@@ -20,7 +20,7 @@ public class Category implements Serializable {
 	private Long id;
 
 	@Column(unique = true)
-	@NotNull(message="must not be null")
+	@NotNull(message = "must not be null")
 	@Size(min = 3, max = 25)
 	private String name;
 

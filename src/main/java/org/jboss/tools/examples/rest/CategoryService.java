@@ -45,8 +45,7 @@ public class CategoryService extends BaseEntityService<Category> {
 			}
 			// A WebApplicationException can wrap a response
 			// Throwing the exception causes an automatic rollback
-			e.printStackTrace();
-			System.out.println(errors);
+//			e.printStackTrace();
 			throw new RestServiceException(Response.status(Response.Status.BAD_REQUEST).entity(errors).build());
 		} 
 		catch (Exception e) {
@@ -55,7 +54,7 @@ public class CategoryService extends BaseEntityService<Category> {
 			errors.put("errors", Collections.singletonList(e.getMessage()));
 			// A WebApplicationException can wrap a response
 			// Throwing the exception causes an automatic rollback
-			e.printStackTrace();
+//			e.printStackTrace();
 			throw new RestServiceException(Response.status(Response.Status.BAD_REQUEST).entity(errors).build());
 		}
 	}

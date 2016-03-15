@@ -6,6 +6,10 @@
   padding-right: 15px;
 }
 
+.navbar {
+	margin-bottom:0;
+}
+
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
@@ -18,9 +22,15 @@
   padding-bottom: 19px;
 }
 
+.container {
+	min-height: 520px;
+}
+
+
 /* Custom page footer */
 .footer {
-  padding-top: 19px;
+  margin-top:20px;
+  padding-top: 5px;
   color: #777;
   border-top: 1px solid #e5e5e5;
 }
@@ -108,10 +118,29 @@
 	 font-size: small;
 }
 
-.debug_dump {
-  clear: both;
-  float: left;
-  width: 100%;
-  margin-top: 45px;
-  @include box_sizing;
+.prod-edit-btn {
+	padding: 8px 12px;
+	margin-bottom: 2px;
+}
+
+.multi-select button {
+	background-image: none;
+	border-color: #ccc;
+}
+
+.multi-select button:hover {
+    color: #333;
+    background-color: #e6e6e6;
+    background-image: none;
+    border-color: #adadad;
+}
+
+.ingredient-panel {
+	min-height:37px;
+	padding: 0px 4px;
+}
+
+.ingredient-panel h4 {
+	margin-top: 8px;
+	margin-bottom: 6px;
 }

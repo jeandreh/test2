@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="scripts/bower_components/angular-multi-select/isteven-multi-select.css" />
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css(.tmp) styles/main.css -->
+    <!-- build:css(.tmp) styles/main.css -->	
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
   </head>
@@ -23,7 +23,7 @@
 
     <!-- Add your site or application content here -->
     <div class="header">
-         <nav class="navbar navbar-inverse" role="navigation" ng-cloak>
+         <nav class="navbar navbar-default navbar-inverse" role="navigation" ng-cloak>
           <div class="container-fluid">
             <div class="navbar-header">
               <button type="button" class="navbar-toggle"
@@ -51,10 +51,16 @@
         </nav>
     </div>
 
-    <div id="main-content" class="container" ng-view></div>
+    <div class="container">
+    	<flash-message duration="5000" show-close="true"></flash-message>
+		<div id="main-content" ng-view></div>
+    </div>
 
     <div class="footer">
-        <p><span class="glyphicon glyphicon-copyright-mark"></span>&nbsp;COPYRIGHT 2015, Cloud POS</p>
+        <p class="pull-right" style="margin-right: 5px;">
+        	<span class="glyphicon glyphicon-copyright-mark"></span>&nbsp;
+        	COPYRIGHT 2015, Cloud POS
+        </p>
     </div>
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
     <script>
@@ -90,10 +96,10 @@
     <script src="scripts/bower_components/angular-strap/dist/angular-strap.js"></script>
     <script src="scripts/bower_components/angular-strap/dist/angular-strap.tpl.js"></script>
     <script src="scripts/bower_components/json3/lib/json3.js"></script>
-    <script src="scripts/bower_components/es5-shim/es5-shim.js"></script>
     <script src="scripts/bower_components/flow.js/dist/flow.js"></script>
     <script src="scripts/bower_components/ng-flow/dist/ng-flow.js"></script>
     <script src="scripts/bower_components/underscore/underscore.js"></script>
+    <script src="scripts/bower_components/angular-flash-alert/dist/angular-flash.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 

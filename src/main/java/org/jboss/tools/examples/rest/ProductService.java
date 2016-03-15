@@ -50,7 +50,7 @@ public class ProductService extends BaseEntityService<Product> {
 			errors.put("errors", errorMessages);
 			// A WebApplicationException can wrap a response
 			// Throwing the exception causes an automatic rollback
-			e.printStackTrace();
+//			e.printStackTrace();
 			throw new RestServiceException(Response.status(Response.Status.BAD_REQUEST).entity(errors).build());
 		} 
 		catch (Exception e) {
@@ -59,7 +59,7 @@ public class ProductService extends BaseEntityService<Product> {
 			errors.put("errors", Collections.singletonList(e.getMessage()));
 			// A WebApplicationException can wrap a response
 			// Throwing the exception causes an automatic rollback
-			e.printStackTrace();
+//			e.printStackTrace();
 			throw new RestServiceException(Response.status(Response.Status.BAD_REQUEST).entity(errors).build());
 		}
 	}

@@ -1,82 +1,97 @@
-<div class="container">
-	<form name="productForm" novalidate role="form" id="productForm" name="productForm">
-		<div class="row" id="product-description">
-			<div class="col-md-2">
-				<div flow-init="{singleFile:true, target:'upload', testChunks:false}"
-					flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
-					flow-files-submitted="$flow.upload()"
-					flow-file-success="handleUploadSuccess($file, $message)"
-					flow-file-error="handleUploadError($file, $message);">
-					<span class="glyphicon glyphicon-remove-circle"
-						ng-show="$flow.files.length"
-						ng-click="$flow.cancel();clearImage();">
-					</span>
-					<span class="btn btn-default" flow-btn="">
-						<div ng-hide="$flow.files.length">
-						  <img src="{{product.imageUrl}}" width="150px"></img>
-						</div>
-						<div ng-show="$flow.files.length">
-						  <img flow-img="$flow.files[0]" width="150px"></img>
-						</div>
-					</span>
-				</div>
+<form name="productForm" novalidate role="form" id="productForm" name="productForm">
+	<div id="product-description" class="row" >
+		
+		<!-- Product Image -->
+		<div class="col-md-2">
+			<div flow-init="{singleFile:true, target:'upload', testChunks:false}"
+				flow-file-added="!!{png:1,gif:1,jpg:1,jpeg:1}[$file.getExtension()]"
+				flow-files-submitted="$flow.upload()"
+				flow-file-success="handleUploadSuccess($file, $message)"
+				flow-file-error="handleUploadError($file, $message);">
+				<span class="glyphicon glyphicon-remove-circle"
+					ng-show="$flow.files.length"
+					ng-click="$flow.cancel();clearImage();">
+				</span>
+				<span class="btn btn-default" flow-btn="">
+					<div ng-hide="$flow.files.length">
+					  <img src="{{product.imageUrl}}" width="150px"></img>
+					</div>
+					<div ng-show="$flow.files.length">
+					  <img flow-img="$flow.files[0]" width="150px"></img>
+					</div>
+				</span>
 			</div>
-			<div class="col-md-1">
-				<span>&nbsp;</span>
-			</div>
-			<div class="col-md-9">
-				<div class="row">
+		</div>
+		
+		<div id="spacer" class="col-md-1"><span>&nbsp;</span></div>
+		
+		<!-- Product Description -->
+		<div class="col-md-9">
+		
+			<!-- Product Name -->
+			<div class="row">
+				<div class="col-md-12">
 					<div class="form-group has-feedback">
-			    	<h1>
-			    		<input class="form-control input-lg" name="productName" 
-			    			type="text" placeholder="Product name" size="30"
-			    			ng-model="product.name"
-			    			ng-minlength="3"
-			    			ng-maxlength="100"
-			    			required> <!-- TODO unique="products" -->
-			    	</h1>
-		    		<div ng-messages="productForm.productName.$error" ng-show="productForm.productName.$dirty">
-			          	<p class="cxt-error-msg" ng-message="minlength">Name must be at least 3 characters long</p>
-			            <p class="cxt-error-msg" ng-message="maxlength">Name must contain less than 100 characters</p>
-			            <p class="cxt-error-msg" ng-message="required">Name is a required field</p>
-		         	</div>
-			    </div>
-			    <div class="row">
+				    	<h1>
+				    		<input class="form-control input-lg" name="productName" 
+				    			type="text" placeholder="Product name" size="30"
+				    			ng-model="product.name"
+				    			ng-minlength="3"
+				    			ng-maxlength="100"
+				    			required> <!-- TODO unique="products" -->
+				    	</h1>
+			    		<div ng-messages="productForm.productName.$error" ng-show="productForm.productName.$dirty">
+				          	<p class="cxt-error-msg" ng-message="minlength">Name must be at least 3 characters long</p>
+				            <p class="cxt-error-msg" ng-message="maxlength">Name must contain less than 100 characters</p>
+				            <p class="cxt-error-msg" ng-message="required">Name is a required field</p>
+			         	</div>
+			    	</div>
+		    	</div>
+		    </div>
+		    
+		    <!-- Product Category -->
+		    <div class="row">
+		      	<div class="col-md-12">
 					<isteven-multi-select
+						class="multi-select"
 		    			input-model="categories"
-					    output-model="selectedCategories"
+					    output-model="selectedCategories" 
 					    button-label="name"
 					    item-label="name"
 					    tick-property="ticked"
 					    translation="categoriesLocalLang">
 					</isteven-multi-select>
 				</div>
-				</div>
 			</div>
 		</div>
-		<div class="row" id="spacer">
-			<span>&nbsp</span>
-		</div>
-		<div class="row" id="product-composition">
+	
+	</div> <!-- End Product Description -->
+	
+	<div id="spacer" class="row"><div class="col-md-12"><span>&nbsp</span></div></div>
+	
+	<!-- Product Composition -->
+	<div class="row">
+		<div class="col-md-12">
 			<h2>Composition</h2>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-2">
 			<isteven-multi-select
+				class="multi-select" 
 				input-model="ingredients"
 			    output-model="selectedIngredients"
 			    button-label="name"
 			    item-label="name"
 			    tick-property="ticked"
-			    max-labels="2"
+			    max-labels="1"
 			    translation="ingredientsLocalLang">
 			</isteven-multi-select>
-			<input type="button"
-				class="btn btn-default"
-				value="New Ingredient"
-				ng-click="showIngredientModal()">
+		</div>
+		<div class="col-md-9">
+			<!-- Ingredients Panel -->
 			<div class="panel panel-default">
-  			<div class="panel-heading">
-   				<span class="panel-title">Ingredients</span>
-  			</div>
-				<div class="panel-body">
+				<div class="panel-body ingredient-panel">
 					<h4>
 						<span class="label label-primary ingredient"
 							ng-repeat="ingredient in selectedIngredients"
@@ -89,12 +104,23 @@
 				</div>
 			</div>
 		</div>
-		<div class="row" id="product-options">
+		<div class="col-md-1">
+			<a class="btn btn-default prod-edit-btn pull-right" ng-click="showIngredientModal()">
+				<span class="glyphicon glyphicon-plus"></span>
+			</a>
+		</div>
+	</div>
+	
+	<!-- Retail Options -->
+	<div id="product-options" class="row">
+		<div class="col-md-12">
 			<h2>Retail Options</h2>
 			<input type="button"
-				class="btn btn-default"
+				class="btn btn-default prod-edit-btn"
 				value="Add Option"
 				ng-click="showOptionModal();">
+				
+			<!-- Retail Options List -->
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<table class="table table-striped" ng-show="product.retailOptions.length">
@@ -119,11 +145,11 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			<input type="submit"
-				class="btn btn-primary"
-				value="Create Product"
-				ng-click="saveProduct()">
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			<a class="btn btn-primary" ng-click="saveProduct()">Save</a>	
+			<a class="btn btn-primary" href="#/products">Back</a>
 		</div>
-	</form>
-</div>
+	</div>
+</form>

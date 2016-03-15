@@ -1,20 +1,16 @@
 package org.jboss.tools.examples.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
 import java.util.Set;
 
 import javax.inject.Inject;
-import javax.persistence.Basic;
-import javax.swing.text.StyledEditorKit.ForegroundAction;
 import javax.ws.rs.core.Response;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.logging.Logger;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.tools.examples.model.Product;
 import org.jboss.tools.examples.rest.CategoryService;
@@ -25,7 +21,6 @@ import org.jboss.tools.examples.rest.dto.CompositionDTO;
 import org.jboss.tools.examples.rest.dto.ProductDTO;
 import org.jboss.tools.examples.rest.dto.RetailOptionDTO;
 import org.jboss.tools.examples.rest.dto.SupplyDTO;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -45,11 +40,6 @@ public class ProductCreationTest {
 	
 	@Inject
 	SupplyService supplyService;
-	
-	@Before
-	public void setUp() {
-		
-	}
 	
 	@Test
 	public void testProductCompleteCreation() {

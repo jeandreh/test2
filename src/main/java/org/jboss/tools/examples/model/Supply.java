@@ -5,6 +5,7 @@ import java.io.Serializable;
 import javax.persistence.Id;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,19 +21,24 @@ public class Supply implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, unique = true)
+	@Column(unique = true)
+	@NotNull(message = "must not be null")
+	@Size(min = 3, max = 25)
 	private String name;
 
-	@Column(nullable = false)
+	@Column
+	@NotNull(message = "must not be null")
 	@Size(min = 1, max = 3)
 	private String unity;
 
-	@Column(nullable = false)
+	@Column
 	@DecimalMin(value = "0.0")
 	@DecimalMax(value = "9999.99")
 	private Float price;
 
 	@Column
+	@DecimalMin(value = "0.0")
+	@DecimalMax(value = "9999.99")
 	private Float stock;
 
 	public String getUnity() {

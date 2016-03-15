@@ -1,21 +1,40 @@
 <!-- Main Panel -->
 <div class="row" id="main-panel">
-	<!-- Side Bar -->
+	<!-- Quick Filters -->
 	<div class="col-md-2">
-		<div class="row"><h5>Quick Filters:</h5></div>
 		<div class="row">
-			<ul class="nav nav-stacked" id="filters">
-				<li role="presentation" ng-repeat="category in categories">
-					<h4><a ng-click="setFilter(category)" class="label label-primary">{{category.name}}</a></h4>
-				</li>
-				<li role="presentation">
-					<h4><a class="label label-primary">Last Edited</a></h4>
-					<!-- TODO implement last edited filter -->
-				</li>
-			</ul>
+			<div class="col-md-12">
+				<h4>Quick Filters&nbsp;
+					<small><a ng-click="setCategoryFilter(null)" class="btn btn-xs btn-default" role="button">Clear</a></small>
+				</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<ul class="nav nav-stacked" id="filters">
+					<li role="presentation" ng-repeat="category in categories">
+						<h4>
+							<a ng-class="{'label-primary': (categoryFilter == category.name)}" 
+								ng-click="setCategoryFilter(category.name)" class="label label-default">
+								{{category.name}}
+							</a>
+						</h4>
+					</li>
+					<li role="presentation">
+						<h4>
+							<a ng-class="{'label-primary': (categoryFilter == 'Last Edited')}" 
+								ng-click="setCategoryFilter('Last Edited')" class="label label-default">
+								Last Edited
+							</a>
+						</h4>
+						<!-- TODO implement last edited filter -->
+					</li>
+				</ul>
+			</div>
 		</div>
 	</div>
 	<div class="col-md-10">
+		
 		<!-- Menu Bar -->
 		<div class="row">
 			<div class="col-md-9">
@@ -23,24 +42,24 @@
 					<a class="btn btn-default" href="#/products/new" role="button">New Product</a>
 				</div>
 			</div>
-			<div class="col-md-3">
-				<form class="form-inline" role="form">
-					<div class="form-group has-feedback">
-						<label class="control-label" for="search"></label>
-						<input ng-model="searchText" type="text" class="form-control" id="search" placeholder="Search">
-						<span class="glyphicon glyphicon-search form-control-feedback"></span>
-					</div>
-				</form>
+			<div class="col-md-3">	
+				<input ng-model="searchText" type="search" class="form-control" placeholder="Search..." />
 			</div>
 		</div>
-		<div class="row">&nbsp;</div>
+		<div class="row"><div class="col-md-12">&nbsp;</div></div>
+		
 		<!-- Product List -->
 		<div class="row list-group">
-			<div class="list-group-item" ng-repeat="product in products | filter: {name: searchText, categories: {name: categoryFilter}}">
+			<div class="col-md-12">
+			<div class="list-group-item" 
+				ng-repeat="product in products | 
+							filter: {name: searchText} | 
+							filter: filterByCategory">
 				<div class="row">	
 					<div class="col-md-1">
 					  	<a href="">
-					  		<img class="media-object product-image" ng-src="{{product.imageUrl}}" width="64px"/>
+					  		<img ng-show="product.imageUrl" class="media-object product-image" ng-src="{{product.imageUrl}}" width="64px"/>
+					  		<img ng-hide="product.imageUrl" class="media-object product-image" ng-src="img/noimage.png" width="64px"/>
 					  	</a>
 					</div>
 			  		<div class="col-md-3">
@@ -55,22 +74,25 @@
 				    		</ul>
 				    	</div>
 					</div>
-					<div class="col-md-7">
+					<div class="col-md-6">
 						<ul class="list-inline">
 							<li ng-repeat="category in product.categories">
 								<span class="label label-primary">{{category.name}}</span>
 							</li>
 						</ul>
 					</div>
-					<div class="col-md-1">
-				    	<a class="btn btn-xs btn-default" href="#/products/{{product.id}}" role="button">
-				    		<span class="glyphicon glyphicon-pencil"></span>
-				    	</a><br>
-				    	<a class="btn btn-xs btn-default" href="#" role="button">
-				    		<span class="glyphicon glyphicon-remove"></span>
-				    	</a>
+					<div class="col-md-2">
+						<div class="btn-group pull-right">
+					    	<a class="btn btn-xs btn-default" href="#/products/{{product.id}}" role="button">
+					    		<span class="glyphicon glyphicon-pencil"></span>
+					    	</a>
+					    	<a class="btn btn-xs btn-default" href="#/products" role="button">
+					    		<span class="glyphicon glyphicon-remove"></span>
+					    	</a>
+				    	</div>
 					</div>
 				</div>
+			</div>
 			</div>
 		</div>
    	</div>

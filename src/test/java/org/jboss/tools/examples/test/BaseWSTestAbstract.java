@@ -1,5 +1,7 @@
 package org.jboss.tools.examples.test;
 
+import java.util.Random;
+
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.tools.examples.model.Product;
@@ -31,6 +33,12 @@ public abstract class BaseWSTestAbstract {
 	
 	protected String createRandomString(int length) {
 		return RandomString.getString(length);
+	}
+	
+	protected Float createRandomFloat(float max) {
+		float min = 0.01F;
+		Random rand = new Random();
+		return rand.nextFloat() * (max - min) + min;
 	}
 	
 }

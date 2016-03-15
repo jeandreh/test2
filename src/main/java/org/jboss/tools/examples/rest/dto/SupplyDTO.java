@@ -97,7 +97,7 @@ public class SupplyDTO extends ChangeTrackingDTO implements Serializable {
 
 	public void setPrice(final Float price) {
 		this.price = price;
-		this.setChanged(this.name);
+		this.setChanged(this.price);
 	}
 
 	@Override

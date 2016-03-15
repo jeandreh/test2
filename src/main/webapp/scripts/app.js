@@ -11,7 +11,8 @@ angular
     'ngTouch',
     'ngMessages',
     'mgcrea.ngStrap',
-    'flow'
+    'flow',
+    'ngFlash'
 ])
 .config([ '$routeProvider', function ($routeProvider) {
   $routeProvider

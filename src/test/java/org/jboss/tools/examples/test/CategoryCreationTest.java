@@ -15,6 +15,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 @RunWith(Arquillian.class)
+@SuppressWarnings("unchecked")
 public class CategoryCreationTest extends BaseWSTestAbstract {
 	
 	@Inject
