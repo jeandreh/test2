@@ -1,0 +1,42 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="page-header">
+			<h3>Product Categories&nbsp;<small>Select a field to edit</small></h3>
+		</div>
+		
+		<input type="button"
+				class="btn btn-default cpos-btn"
+				value="Add Category"
+				ng-click="addCategory()">
+				
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<table class="table table-striped" ng-show="categories.length">
+					<thead>
+						<tr>
+							<th>Name</th>
+							<th>Description</th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="category in categories">
+							<td>
+								<a href="#" editable-text="category.name"
+									 onaftersave="saveCategory(category)">{{category.name || 'empty'}}</a>
+							</td>
+							<td>
+								<a href="#" editable-text="category.description" 
+									onaftersave="saveCategory()" onaftersave="saveCategory(category)">{{category.description || 'empty'}}</a>
+							</td>
+							<td>
+								<span style="cursor:pointer;" class="glyphicon glyphicon-remove-circle" 
+									ng-click="removeCategory(category)"></span>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>	
+	</div>
+</div>
