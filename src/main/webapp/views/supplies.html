@@ -1,0 +1,24 @@
+<div class="row">
+	<div class="col-md-12">
+		<div class="page-header">
+			<h3>Supplies&nbsp;<small>Select a field to edit</small></h3>
+		</div>
+		
+		<input type="button"
+				class="btn btn-default cpos-btn"
+				value="Add Supply"
+				ng-click="addSupply()">
+				
+		<div id="categoryGrid" 
+			ui-grid="gridOptions" 
+			class="grid panel panel-default"
+			ui-grid-edit
+			ui-grid-row-edit
+			ui-grid-cellNav
+			ui-grid-validate>
+			<p class="cxt-error-msg" ng-repeat="error in errors">
+				<strong>{{error.field}}: </strong>{{error.message}}
+			</p>
+		</div>
+	</div>
+</div>
