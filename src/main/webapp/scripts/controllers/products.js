@@ -25,7 +25,7 @@ angular.module('cloudPosApp')
         function(response) {
             flash.create('danger', 
     			'<b>Error loading product list from server</b><br/>' + 
-    			'Details: ' + response.data, 0, null, false);
+    			'Details: ' + response.data, 10000, null, false);
             console.error(response.data);
         }
     );
@@ -38,7 +38,7 @@ angular.module('cloudPosApp')
         function(response) {
         	 flash.create('danger', 
      			'<b>Error loading categories list from server</b><br/>' + 
-     			'Details: ' + response.data, 0, null, false);
+     			'Details: ' + response.data, 10000, null, false);
         	 console.error(response.data);
         }
     );

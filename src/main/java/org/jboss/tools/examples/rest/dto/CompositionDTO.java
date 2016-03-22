@@ -6,7 +6,7 @@ import org.jboss.tools.examples.model.Supply;
 
 import javax.persistence.EntityManager;
 import javax.xml.bind.annotation.XmlRootElement;
-@XmlRootElement
+
 public class CompositionDTO extends ChangeTrackingDTO implements Serializable {
 
 	private Long id;

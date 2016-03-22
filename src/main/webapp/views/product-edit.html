@@ -12,14 +12,14 @@
 					ng-show="$flow.files.length"
 					ng-click="$flow.cancel();clearImage();">
 				</span>
-				<span class="btn btn-default" flow-btn="">
+				<div class="btn btn-default" flow-btn>
 					<div ng-hide="$flow.files.length">
 					  <img src="{{product.imageUrl}}" width="150px"></img>
 					</div>
 					<div ng-show="$flow.files.length">
 					  <img flow-img="$flow.files[0]" width="150px"></img>
 					</div>
-				</span>
+				</div>
 			</div>
 		</div>
 		
@@ -35,12 +35,14 @@
 				    	<h1>
 				    		<input class="form-control input-lg" name="productName" 
 				    			type="text" placeholder="Product name" size="30"
+				    			autocomplete="off"
 				    			ng-model="product.name"
 				    			ng-minlength="3"
-				    			ng-maxlength="100"
-				    			required> <!-- TODO unique="products" -->
+				    			ng-maxlength="25"
+				    			ng-required
+				    			> <!-- TODO unique="products" -->
 				    	</h1>
-			    		<div ng-messages="productForm.productName.$error" ng-show="productForm.productName.$dirty">
+			    		<div ng-messages="productForm.productName.$error">
 				          	<p class="cxt-error-msg" ng-message="minlength">Name must be at least 3 characters long</p>
 				            <p class="cxt-error-msg" ng-message="maxlength">Name must contain less than 100 characters</p>
 				            <p class="cxt-error-msg" ng-message="required">Name is a required field</p>
@@ -67,12 +69,12 @@
 	
 	</div> <!-- End Product Description -->
 	
-	<div id="spacer" class="row"><div class="col-md-12"><span>&nbsp</span></div></div>
+	<div id="spacer" class="row"><div class="col-md-12"><span>&nbsp;</span></div></div>
 	
 	<!-- Product Composition -->
 	<div class="row">
 		<div class="col-md-12">
-			<h2>Composition</h2>
+			<h3>Composition</h3>
 		</div>
 	</div>
 	<div class="row">
@@ -105,7 +107,7 @@
 			</div>
 		</div>
 		<div class="col-md-1">
-			<a class="btn btn-default prod-edit-btn pull-right" ng-click="showIngredientModal()">
+			<a class="btn btn-default cpos-btn pull-right" ng-click="showIngredientModal()">
 				<span class="glyphicon glyphicon-plus"></span>
 			</a>
 		</div>
@@ -114,9 +116,9 @@
 	<!-- Retail Options -->
 	<div id="product-options" class="row">
 		<div class="col-md-12">
-			<h2>Retail Options</h2>
+			<h3>Retail Options</h3>
 			<input type="button"
-				class="btn btn-default prod-edit-btn"
+				class="btn btn-default cpos-btn"
 				value="Add Option"
 				ng-click="showOptionModal();">
 				
@@ -148,7 +150,7 @@
 	</div>
 	<div class="row">
 		<div class="col-md-12">
-			<a class="btn btn-primary" ng-click="saveProduct()">Save</a>	
+			<a class="btn btn-primary" ng-click="saveProduct(product)">Save</a>	
 			<a class="btn btn-primary" href="#/products">Back</a>
 		</div>
 	</div>

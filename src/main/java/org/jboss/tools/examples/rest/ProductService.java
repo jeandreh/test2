@@ -5,23 +5,18 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import javax.ejb.Stateless;
-import javax.enterprise.inject.spi.Bean;
 import javax.validation.ConstraintViolation;
 import javax.validation.ConstraintViolationException;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Request;
 import javax.ws.rs.core.Response;
 
 import org.jboss.tools.examples.rest.RestServiceException;
 import org.jboss.tools.examples.rest.dto.ProductDTO;
-import org.jboss.tools.examples.rest.dto.RetailOptionDTO;
-import org.jboss.logging.Logger;
 import org.jboss.tools.examples.model.Product;
 
 @Path("/products")

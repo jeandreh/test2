@@ -12,7 +12,12 @@ angular
     'ngMessages',
     'mgcrea.ngStrap',
     'flow',
-    'ngFlash'
+    'ngFlash',
+    'ui.grid',
+    'ui.grid.edit',
+    'ui.grid.rowEdit',
+    'ui.grid.cellNav',
+    'ui.grid.validate'
 ])
 .config([ '$routeProvider', function ($routeProvider) {
   $routeProvider
@@ -35,6 +40,14 @@ angular
     .when('/products/:id', {
       templateUrl: 'views/product-edit.html',
       controller: 'ProductEditCtrl'
+    })
+    .when('/categories', {
+      templateUrl: 'views/categories.html',
+      controller: 'CategoriesCtrl'
+    })
+    .when('/supplies', {
+      templateUrl: 'views/supplies.html',
+      controller: 'SuppliesCtrl'
     })
     .otherwise({
       redirectTo: '/'

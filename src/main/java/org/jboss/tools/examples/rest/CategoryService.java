@@ -1,9 +1,7 @@
 package org.jboss.tools.examples.rest;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.ejb.Stateless;
@@ -15,9 +13,6 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.jboss.marshalling.Pair;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.tools.examples.model.Category;
 import org.jboss.tools.examples.rest.dto.CategoryDTO;
 
@@ -28,7 +23,7 @@ public class CategoryService extends BaseEntityService<Category> {
 	public CategoryService() {
 		super(Category.class);
 	}
-	
+
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response createCategory(CategoryDTO categoryDTO) {
@@ -47,7 +42,7 @@ public class CategoryService extends BaseEntityService<Category> {
 			// Throwing the exception causes an automatic rollback
 //			e.printStackTrace();
 			throw new RestServiceException(Response.status(Response.Status.BAD_REQUEST).entity(errors).build());
-		} 
+		}
 		catch (Exception e) {
 			// Finally, handle unexpected exceptions
 			Map<String, Object> errors = new HashMap<String, Object>();
@@ -58,5 +53,5 @@ public class CategoryService extends BaseEntityService<Category> {
 			throw new RestServiceException(Response.status(Response.Status.BAD_REQUEST).entity(errors).build());
 		}
 	}
-	
+
 }

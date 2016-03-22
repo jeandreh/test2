@@ -7,7 +7,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.tools.examples.model.Product;
 import org.jboss.tools.examples.rest.ProductService;
 import org.jboss.tools.examples.rest.dto.ProductDTO;
-import org.jboss.tools.examples.test.util.RandomString;
+import org.jboss.tools.examples.util.RandomString;
 
 public abstract class BaseWSTestAbstract {
 

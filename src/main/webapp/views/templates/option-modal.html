@@ -17,7 +17,7 @@
               placeholder="Name of the retail option (Eg: Large, Standard)"
               ng-model="option.name"
               ng-minlength="3"
-              ng-maxlength="100"
+              ng-maxlength="25"
               required
               unique="product.retailOptions">
             <div ng-messages="optionForm.opName.$error" ng-show="optionForm.opName.$dirty">
@@ -67,12 +67,14 @@
               placeholder="Retail price for this option"
               ng-model="option.price"
               ng-min="0.0"
-              ng-max="999.99"
+              ng-max="9999.99"
+              ng-pattern="/^[0-9]{1,4}((\.|,)[0-9]{1,2})?$/"
               required>
               <div ng-messages="optionForm.price.$error" ng-show="optionForm.price.$dirty">
                 <p class="cxt-error-msg" ng-message="min">Price must be positive</p>
-                <p class="cxt-error-msg" ng-message="max">Price must must be under 1000</p>
+                <p class="cxt-error-msg" ng-message="max">Price must must be under 10000</p>
                 <p class="cxt-error-msg" ng-message="required">Price is a required field</p>
+                <p class="cxt-error-msg" ng-message="pattern">Price must be in the format dddd.dd</p>
               </div>
           </div>
           <div class="form-group">

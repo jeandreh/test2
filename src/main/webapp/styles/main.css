@@ -1,10 +1,25 @@
 /* Everything but the jumbotron gets side spacing for mobile first views */
+
+body {
+	background: #f4f2f2;
+	-webkit-font-smoothing: antialiased;
+}
+
 .header,
 .marketing,
 .footer {
   padding-left: 15px;
   padding-right: 15px;
+  border-bottom: 1px solid #e5e5e5;
 }
+
+.page-header {
+	margin: 20px 0 20px;
+}
+
+/* .panel {
+	box-shadow: 0 0 10px rgba(0,0,0,.1);	
+} */
 
 .navbar {
 	margin-bottom:0;
@@ -23,16 +38,19 @@
 }
 
 .container {
-	min-height: 520px;
+	min-height: 550px;
 }
-
 
 /* Custom page footer */
 .footer {
-  margin-top:20px;
-  padding-top: 5px;
+  margin-top:0px;
+  margin-bottom:0px;
   color: #777;
-  border-top: 1px solid #e5e5e5;
+}
+
+.footer > p {
+  padding-top:5px;
+  margin-right: 5px;
 }
 
 .container-narrow > hr {
@@ -107,18 +125,13 @@
   outline-color: red;
 }
 
-.ng-valid.ng-dirty {
-  border-color: green;
-  outline-color: green;
-}
-
 .cxt-error-msg {
 	 color: red;
 	 margin-left: 10px;
 	 font-size: small;
 }
 
-.prod-edit-btn {
+.cpos-btn {
 	padding: 8px 12px;
 	margin-bottom: 2px;
 }
@@ -143,4 +156,21 @@
 .ingredient-panel h4 {
 	margin-top: 8px;
 	margin-bottom: 6px;
+}
+
+.scrollable {
+	overflow:auto;
+	max-height: 400px !important;
+}
+
+.grid {
+    max-height: 400px;
+}
+
+.ui-grid-cell-focus {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.ui-grid-empty-cell {
+	border: 1px solid #ffd31c !important;
 }

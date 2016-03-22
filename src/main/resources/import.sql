@@ -14,6 +14,7 @@
 -- See the License for the specific language governing permissions and
 -- limitations under the License.
 --
+insert into User (name, email, encryptedPassword) values ('Fulano da Silva', 'user@email.com', '2bf2c95a8a3a5e68f22fe8dd5dc06067dffa88b8c5910eeff348e4c4')
 
 -- Category 1
 insert into Category (name, description) values ('Hot Drinks', 'Try our delicious Coffees and Teas')

@@ -8,6 +8,6 @@
  * Controller of the cloudPosApp
  */
 angular.module('cloudPosApp')
-  .controller('MainCtrl', [ '$scope', '$window', "ngFlash", function ($scope, $window, ngFlash) {
+  .controller('MainCtrl', [ '$scope', '$window', "Flash", function ($scope, $window, flash) {
 
   }]);

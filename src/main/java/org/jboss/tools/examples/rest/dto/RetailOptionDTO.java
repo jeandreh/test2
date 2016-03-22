@@ -3,14 +3,12 @@ package org.jboss.tools.examples.rest.dto;
 import java.io.Serializable;
 import org.jboss.tools.examples.model.RetailOption;
 import javax.persistence.EntityManager;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
 
 import java.util.Set;
 import java.util.HashSet;
 import org.jboss.tools.examples.model.Composition;
-import java.util.Iterator;
 import javax.xml.bind.annotation.XmlRootElement;
+
 @XmlRootElement
 public class RetailOptionDTO extends ChangeTrackingDTO implements Serializable {
 

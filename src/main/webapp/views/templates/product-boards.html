@@ -24,10 +24,12 @@
 <div class="row placeholders" ng-repeat="board in productBoards"
 	ng-show="isSelected($index)" id="board_{{$index}}">
 	<div class="col-xs-6 col-sm-3 placeholder" ng-repeat="product in board.products">
+		<h4 class="text text-center">
 		<a href="" ng-click="addProduct(product)" class="thumbnail">
 			<img class="img img-rounded img-responsive" ng-src="{{product.imageUrl}}">
-			<h4 class="text text-center">{{product.name}}</h4>
+			 {{product.name}}
 		</a>
+		</h4>
 	</div>
 </div>
 

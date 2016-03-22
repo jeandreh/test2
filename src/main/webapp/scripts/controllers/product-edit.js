@@ -9,10 +9,27 @@
  */
 angular.module('cloudPosApp')
   .controller('ProductEditCtrl', [
-    '$scope', '$modal', '$routeParams', '$window', 
-    '$location', 'productSvc', 'categorySvc', 'supplySvc', 'Flash',
-    function ($scope, $modal, $routeParams, $window, $location,
-    		productSvc, categorySvc, supplySvc, flash) {
+	    '$scope', 
+	    '$modal', 
+	    '$routeParams', 
+	    '$window', 
+	    '$location', 
+	    'productSvc', 
+	    'categorySvc', 
+	    'supplySvc', 
+	    'Flash',
+    function (
+    	$scope, 
+    	$modal, 
+    	$routeParams, 
+    	$window, 
+    	$location,
+    	productSvc, 
+    	categorySvc, 
+    	supplySvc, 
+    	flash
+    )
+{
 
     $scope.categories = [];
 
@@ -69,7 +86,7 @@ angular.module('cloudPosApp')
         function(response) {
         	 flash.create('danger', 
          			'<b>Error loading category list from server</b><br/>' + 
-         			'Details: ' + response.data, 0, null, false);
+         			'Details: ' + response.data, 10000, null, false);
         	 console.error(response.data);
         }
     );
@@ -82,7 +99,7 @@ angular.module('cloudPosApp')
         function(response) {
         	 flash.create('danger', 
          			'<b>Error loading ingredient list from server</b><br/>' + 
-         			'Details: ' + response.data, 0, null, false);
+         			'Details: ' + response.data, 10000, null, false);
         	 console.error(response.data);
         }
     );
@@ -124,7 +141,7 @@ angular.module('cloudPosApp')
 
     function handleError() {
     	 flash.create('danger', 
-     		'<b>Invalid request.</b><br/>', 0, null, false);
+     		'<b>Invalid request.</b><br/>', 10000, null, false);
     	 console.error("Invalid request");
     }
 
@@ -188,7 +205,7 @@ angular.module('cloudPosApp')
         }
         else {
         	 flash.create('danger', 
-     			'<b>Error saving ingredient.</b><br/>', 0, null, false);
+     			'<b>Error saving ingredient.</b><br/>', 10000, null, false);
         	 console.error("Error saving ingredient");
         }
     };
@@ -209,20 +226,20 @@ angular.module('cloudPosApp')
         }
         else {
         	flash.create('danger', 
-         		'<b>Error saving retail option</b><br/>', 0, null, false);
+         		'<b>Error saving retail option</b><br/>', 10000, null, false);
         	console.error("Error saving retail option");
         }
     };
 
-    $scope.saveProduct = function() {
+    $scope.saveProduct = function(product) {
     	
-    	if ($scope.product.imageUrl === DEFAULT_IMG_URL) {
-    		$scope.product.imageUrl = null;
+    	if (product.imageUrl === DEFAULT_IMG_URL) {
+    		product.imageUrl = null;
     	}
     	
     	for (var i = 0; i < $scope.selectedIngredients.length; i++) {
     		var ingred = $scope.selectedIngredients[i];
-    		$scope.product.ingredients.push(
+    		product.ingredients.push(
 				{
 					"id": ingred.id,
 					"name": ingred.name,
@@ -233,15 +250,15 @@ angular.module('cloudPosApp')
     	
     	for (var i = 0; i < $scope.selectedCategories.length; i++) {
     		var category = $scope.selectedCategories[i];
-    		$scope.product.categories.push(
+    		product.categories.push(
 				{
 					"id": category.id,
 					"name": category.name,
 				}
     		);
     	}
-    	console.log($scope.product);
-        var promise = productSvc.create($scope.product);
+    	console.log(product);
+        var promise = productSvc.create(product);
         promise.then(
             function(response) {
                 console.log("Product saved with ID = " + response.data);
@@ -250,7 +267,7 @@ angular.module('cloudPosApp')
             function(response) {
             	flash.create('danger', 
          			'<b>Error saving product.</b><br/>' +
-         			'Details: ' + response.data, 0, null, false);
+         			'Details: ' + response.data, 10000, null, false);
             	console.error(response.data);
             }
         );
@@ -259,7 +276,7 @@ angular.module('cloudPosApp')
     $scope.handleUploadError = function (file, msg) {
     	flash.create('danger', 
  			'<b>Error uploading product image.</b><br/>' +
- 			'Details: ' + msg, 0, null, false);
+ 			'Details: ' + msg, 10000, null, false);
     	console.error(msg);
     };
     
@@ -271,7 +288,7 @@ angular.module('cloudPosApp')
     	$scope.product.imageUrl = DEFAULT_IMG_URL;
     };
     
-  }]);
+}]);
 
 /**
 * $scope.product =

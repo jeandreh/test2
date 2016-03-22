@@ -1,4 +1,11 @@
 <!-- Main Panel -->
+<!-- <div class="row" id="main-panel">
+	<div class="col-md-12">
+		<div class="page-header">
+			<h3>Products</h3>
+		</div>
+	</div>
+</div> -->
 <div class="row" id="main-panel">
 	<!-- Quick Filters -->
 	<div class="col-md-2">
@@ -46,53 +53,54 @@
 				<input ng-model="searchText" type="search" class="form-control" placeholder="Search..." />
 			</div>
 		</div>
-		<div class="row"><div class="col-md-12">&nbsp;</div></div>
-		
+		<div class="row">
+			<div class="col-md-12">&nbsp;</div>
+		</div>
 		<!-- Product List -->
-		<div class="row list-group">
+		<div class="row list-group scrollable">
 			<div class="col-md-12">
-			<div class="list-group-item" 
-				ng-repeat="product in products | 
-							filter: {name: searchText} | 
-							filter: filterByCategory">
-				<div class="row">	
-					<div class="col-md-1">
-					  	<a href="">
-					  		<img ng-show="product.imageUrl" class="media-object product-image" ng-src="{{product.imageUrl}}" width="64px"/>
-					  		<img ng-hide="product.imageUrl" class="media-object product-image" ng-src="img/noimage.png" width="64px"/>
-					  	</a>
-					</div>
-			  		<div class="col-md-3">
-				    	<h4 class="list-group-item-heading">
-				    		{{product.name}}
-				    	</h4>	
-				    	<div class="list-group-item-text">
-				    		<ul class="list-inline">
-				    			<li ng-repeat="retailOption in product.retailOptions">
-				    				<span class="label label-default">{{retailOption.shortName}}:&nbsp;{{retailOption.price | currency: 'R$'}}</span>
-				    			</li>
-				    		</ul>
-				    	</div>
-					</div>
-					<div class="col-md-6">
-						<ul class="list-inline">
-							<li ng-repeat="category in product.categories">
-								<span class="label label-primary">{{category.name}}</span>
-							</li>
-						</ul>
-					</div>
-					<div class="col-md-2">
-						<div class="btn-group pull-right">
-					    	<a class="btn btn-xs btn-default" href="#/products/{{product.id}}" role="button">
-					    		<span class="glyphicon glyphicon-pencil"></span>
-					    	</a>
-					    	<a class="btn btn-xs btn-default" href="#/products" role="button">
-					    		<span class="glyphicon glyphicon-remove"></span>
-					    	</a>
-				    	</div>
+				<div class="list-group-item" 
+					ng-repeat="product in products | 
+								filter: {name: searchText} | 
+								filter: filterByCategory">
+					<div class="row">	
+						<div class="col-md-1">
+						  	<a href="">
+						  		<img ng-show="product.imageUrl" class="media-object product-image" ng-src="{{product.imageUrl}}" width="64px"/>
+						  		<img ng-hide="product.imageUrl" class="media-object product-image" ng-src="img/noimage.png" width="64px"/>
+						  	</a>
+						</div>
+				  		<div class="col-md-3">
+					    	<h4 class="list-group-item-heading">
+					    		{{product.name}}
+					    	</h4>	
+					    	<div class="list-group-item-text">
+					    		<ul class="list-inline">
+					    			<li ng-repeat="retailOption in product.retailOptions">
+					    				<span class="label label-default">{{retailOption.shortName}}:&nbsp;{{retailOption.price | currency: 'R$'}}</span>
+					    			</li>
+					    		</ul>
+					    	</div>
+						</div>
+						<div class="col-md-6">
+							<ul class="list-inline">
+								<li ng-repeat="category in product.categories">
+									<span class="label label-primary">{{category.name}}</span>
+								</li>
+							</ul>
+						</div>
+						<div class="col-md-2">
+							<div class="btn-group pull-right">
+						    	<a class="btn btn-xs btn-default" href="#/products/{{product.id}}" role="button">
+						    		<span class="glyphicon glyphicon-pencil"></span>
+						    	</a>
+						    	<a class="btn btn-xs btn-default" href="#/products" role="button">
+						    		<span class="glyphicon glyphicon-remove"></span>
+						    	</a>
+					    	</div>
+						</div>
 					</div>
 				</div>
-			</div>
 			</div>
 		</div>
    	</div>
