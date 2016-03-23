@@ -15,6 +15,8 @@
 -- limitations under the License.
 --
 
+insert into User (name, email, encryptedPassword) values ('Fulano da Silva', 'user@email.com', '2bf2c95a8a3a5e68f22fe8dd5dc06067dffa88b8c5910eeff348e4c4')
+
 -- Category 1
 insert into Category (name, description) values ('Hot Drinks', 'Try our delicious Coffees and Teas')
 -- Category 2
@@ -36,7 +38,7 @@ insert into Supply (name, price, unity, stock) values ('Suggar', '3', 'kg', '100
 insert into Supply (name, price, unity, stock) values ('Chocolate Powder', '25.20', 'kg', '100')
 
 -- Product 1
-insert into Product (name, imageUrl) values ('Black Coffee', '/img/black_coffee.jpg');
+insert into Product (name, imageUrl) values ('Black Coffee', '/images/black_coffee.jpg');
 
 -- Ingredient 1
 insert into Product_Supply (product_id, supply_id) values (1, 1);
